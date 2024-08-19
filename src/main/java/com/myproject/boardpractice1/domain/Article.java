@@ -23,7 +23,7 @@ import java.util.Set;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 }) // Entity 와 매핑할 테이블 지정
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class) // 필드컬럼들?? 이 있는곳에 붙여줌으로써 Auditing 기능(변화가 있으면 변화를 적용시켜줌)을 활성화 시킴
 @Entity // JPA 를 사용해 테이블과 매핑할 클래스에 붙여서 JAP가 관리하게함(1. 기본생성자 꼭 필요, 2. final, enum, interface, inner class 사용불가 3. 필드(변수) fianl 사용불가)
 public class Article { // 게시판
 
