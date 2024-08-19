@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @EntityListeners(AuditingEntityListener.class)
-@MappedSuperclass
+@MappedSuperclass // 객체의 입장에서공통 매핑 정보가 필요할 때, 부모 클래스에 선언하고 속성만 상속 받아서 사용하고 싶을 때 @MappedSuperclass를 사용, DB 테이블과는 상관없다
 public class AuditingFields {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
