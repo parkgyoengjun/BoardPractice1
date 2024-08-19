@@ -23,9 +23,10 @@ import java.util.Set;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 }) // Entity 와 매핑할 테이블 지정
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class) - AuditingFields 클래스로 빼주고 Article extends AuditingFields 로 상속해줌
+// 필드컬럼들?? 이 있는곳에 붙여줌으로써 Auditing 기능(변화가 있으면 변화를 적용시켜줌)을 활성화 시킴
 @Entity // JPA 를 사용해 테이블과 매핑할 클래스에 붙여서 JAP가 관리하게함(1. 기본생성자 꼭 필요, 2. final, enum, interface, inner class 사용불가 3. 필드(변수) fianl 사용불가)
-public class Article { // 게시판
+public class Article extends AuditingFields{ // 게시판
 
     @Id // 특정 속성을 기본키로 설정(PK)
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본값을 자동으로 DB에 생성함. GenerationType.IDENTITY : 기본키 생성을 DB에 위임
@@ -44,14 +45,14 @@ public class Article { // 게시판
     // 다대일 구조 원래라면 FK 를 가진 쪽인 ArticleComment 가 주인인데 게시판에서도 조회가 가능하도록 주인 설정은 article에 설정
     // mappedby = "aritlce" 이 주인 설정을 한거임 , cascade 는 영속성여부판단
 
-
+/* ArticleComment 랑 공통된 요소라서 AuditingFields 클래스로 옮겨줌
     @CreatedDate @Column(nullable = false) private LocalDateTime createdAt; // 생성일시
     @CreatedBy @Column(nullable = false,length = 100) private String createdBy; // 생성자
     @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
     @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy; // 수정자
     // @CreateDate, @LastModifiedDate : JPA 에서 제공하는 애노테이션(직접 날짜를 설정하지 않아도 자동으로 저장해줌)
     // @CreateBy, @LastModifiedBy : 생성자와 수정자 변경시 자동으로 db에 저장된다.
-
+*/
 
     // 모든 jpa Entitiy 들은 hibernate 구현체를 사용하는 경우 기본 생성자를 가지고 있어야한다.
     protected Article() {}
