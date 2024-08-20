@@ -1,5 +1,6 @@
 package com.myproject.boardpractice1.controller;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
 //@WebMvcTest 대신 @SpringBootTest 을 쓴다.
+@Disabled("Spring Data REST 통합테스트는 불필요하므로 제외시킴") // 해당 클래스 밑에 있는 모든 유닛 테스트 and 메서드는 실행되지않는다.
 @DisplayName("Data Rest - API 테스트")
 @Transactional
 @AutoConfigureMockMvc
